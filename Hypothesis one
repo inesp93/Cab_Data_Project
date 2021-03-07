@@ -16,6 +16,10 @@ totalprofit.iloc[1]/numberofrides.iloc[1] #profit per ride for the Yellow Cab co
 
 Name = ['PinkCab', 'YellowCab'] 
 list_of_tuples = list(zip(Name, totalprofit))
-totalprofitfinal= pd.DataFrame(list_of_tuples, columns = ['Company', 'Profit'])
-print(totalprofitfinal)
-totalprofitfinal.to_csv('totalprofitfinal.csv', index = False, header=True) #saving total profit in as a .csv file
+totalprofitfinal= pd.DataFrame(list_of_tuples, columns = ['Company', 'Profit']) #creating a new DataFrame
+totalprofitfinal.to_csv('totalprofitfinal.csv', index = False, header=True) #saving total profit as a .csv file
+
+list_of_tuples = list(zip(Name, numberofrides))
+numberofridesfinal= pd.DataFrame(list_of_tuples, columns = ['Company', 'Profit'])
+print(numberofridesfinal)
+numberofridesfinal.to_csv('numberofridesfinal.csv', index = False, header=True) #saving a number of rides as a .csv file
