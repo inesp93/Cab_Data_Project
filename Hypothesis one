@@ -1,0 +1,15 @@
+#extension of the DataGlacierWeek2_Final_cab_data.ipynb file
+
+#Hypothesis one: Yellow Cab has more profits per ride than the Pink Cab
+
+newtable2['Profit']= newtable2['Price Charged'] - newtable2['Cost of Trip'] #calculate profit in the new column
+
+totalprofit =newtable2.groupby('Company').Profit.agg(lambda x: x.sum()) #total profit from pink and yellow cab
+
+profitincity=newtable2.groupby(['Company','City']).Profit.agg(lambda x: x.sum()) #profit in cities
+
+numberofrides = newtable2.groupby('Company').size() #number of all rides
+
+totalprofit.iloc[0]/numberofrides.iloc[0] #profit per ride for the Pink Cab company
+
+totalprofit.iloc[1]/numberofrides.iloc[1] #profit per ride for the Yellow Cab company
