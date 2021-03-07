@@ -26,5 +26,10 @@ numberofridesfinal.to_csv('numberofridesfinal.csv', index = False, header=True) 
 
 ProfitPerRide=[totalprofit.iloc[0]/numberofrides.iloc[0], totalprofit.iloc[1]/numberofrides.iloc[1]]
 list_of_tuples = list(zip(Name, ProfitPerRide))
-profitperridefinal= pd.DataFrame(list_of_tuples, columns = ['Company', 'Profit Per Ride'])
-profitperridefinal.to_csv('profitperridefinal.csv', index = False, header=True)
+profitperridefinal= pd.DataFrame(list_of_tuples, columns = ['Company', 'Profit Per Ride']) #creating a new DataFrame
+profitperridefinal.to_csv('profitperridefinal.csv', index = False, header=True) #saving Profit per ride as a .csv file
+
+hypothesison = pd.merge(totalprofitfinal, numberofridesfinal, how='left', on=['Company']) #merging the last three tables into one
+hypothesisone = pd.merge(hypothesison, profitperridefinal, how='left', on=['Company'])
+hypothesisone.to_csv('hypothesisone.csv', index = False, header=True) #saving a .csv file
+
