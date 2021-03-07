@@ -13,3 +13,9 @@ numberofrides = newtable2.groupby('Company').size() #number of all rides
 totalprofit.iloc[0]/numberofrides.iloc[0] #profit per ride for the Pink Cab company
 
 totalprofit.iloc[1]/numberofrides.iloc[1] #profit per ride for the Yellow Cab company
+
+Name = ['PinkCab', 'YellowCab'] 
+list_of_tuples = list(zip(Name, totalprofit))
+totalprofitfinal= pd.DataFrame(list_of_tuples, columns = ['Company', 'Profit'])
+print(totalprofitfinal)
+totalprofitfinal.to_csv('totalprofitfinal.csv', index = False, header=True) #saving total profit in as a .csv file
