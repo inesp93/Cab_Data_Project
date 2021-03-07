@@ -23,3 +23,8 @@ list_of_tuples = list(zip(Name, numberofrides))
 numberofridesfinal= pd.DataFrame(list_of_tuples, columns = ['Company', 'Profit'])
 print(numberofridesfinal)
 numberofridesfinal.to_csv('numberofridesfinal.csv', index = False, header=True) #saving a number of rides as a .csv file
+
+ProfitPerRide=[totalprofit.iloc[0]/numberofrides.iloc[0], totalprofit.iloc[1]/numberofrides.iloc[1]]
+list_of_tuples = list(zip(Name, ProfitPerRide))
+profitperridefinal= pd.DataFrame(list_of_tuples, columns = ['Company', 'Profit Per Ride'])
+profitperridefinal.to_csv('profitperridefinal.csv', index = False, header=True)
