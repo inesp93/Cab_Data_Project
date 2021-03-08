@@ -10,3 +10,16 @@ yellow=profitincity.drop(index='Pink Cab')
 
 pinkcities=pd.merge(pink, City, how='left', on=['City']) #merging it with City.csv
 yellowcities=pd.merge(yellow, City, how='left', on=['City'])
+
+def clean_number(x): #function to make a string with , to number
+    if isinstance(x, str):
+        return(x.replace(',', ''))
+    return(x)
+    
+pinkcities['Population'] = pinkcities['Population'].apply(clean_number).astype('float') #using function clean_number to change Population column to a float number
+
+pinkcities['Profit per Capita Pink']= pinkcities['Profit']/pinkcities['Population'] #calculating Profit Per Capita for Pink Cab Company
+
+yellowcities['Population'] = yellowcities['Population'].apply(clean_number).astype('float')
+yellowcities['Profit per Capita Yellow']= yellowcities['Profit']/yellowcities['Population']
+
