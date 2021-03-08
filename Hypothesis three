@@ -100,3 +100,7 @@ newtable2['FeP60'].count()
 #female customers of the yellow company, older than 60
 newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Yellow Cab') & (newtable2['Age'] > 60 ), 'FeY60'] = 'True'
 newtable2['FeY60'].count()
+
+#users between 30-60
+FePbetween= newtable2['WomanP'].count() - newtable2['FeP30'].count() - newtable2['FeP60'].count()
+FeYbetween= newtable2['WomanY'].count() - newtable2['FeY30'].count() - newtable2['FeY60'].count()
