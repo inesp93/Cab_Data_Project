@@ -1,6 +1,6 @@
 #extension of the DataGlacierWeek2_Final_cab_data.ipynb file and Hypothesis two
 
-#Hypothesis three: Yellow Cab Company has a higher number of both male and female users
+#Hypothesis three: Yellow Cab Company has a higher number of both, male and female users
 
 newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Pink Cab'), 'ManP'] = 'True'
 newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Yellow Cab'), 'ManY'] = 'True'
@@ -21,3 +21,34 @@ gender = pd.merge(gend, gende,  how='left', on=['Company'])
 print(gender)
 
 gender.to_csv('hypothesisthree.csv', index = False, header=True)
+
+#checking general data about customers
+
+#male customers of the pink company, younger than 30
+newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Pink Cab') & (newtable2['Age'] < 30 ), 'ManPml30'] = 'True'
+newtable2['ManPml30'].count()
+
+#male customers of the yellow company, younger than 30
+newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Yellow Cab') & (newtable2['Age'] < 30 ), 'ManYml30'] = 'True'
+newtable2['ManYml30'].count()
+
+#making a DataFrame with a new data
+man30 = [newtable2['ManPml30'].count(), newtable2['ManYml30'].count()]
+list_of_tuples = list(zip(Name, man30))
+mal30= pd.DataFrame(list_of_tuples, columns = ['Company', 'Male customers younger than 30'])
+
+#merging a new DataFrame with the previos Gender table
+m=gender.drop(columns='Number of female customers')
+male30 = pd.merge(m, mal30,  how='left', on=['Company'])
+
+#male customers of the pink company, older than 60
+newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Pink Cab') & (newtable2['Age'] > 60 ), 'ManPml60'] = 'True'
+newtable2['ManPml60'].count()
+
+#male customers of the yellow company, older than 60
+newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Yellow Cab') & (newtable2['Age'] > 60 ), 'ManYml60'] = 'True'
+newtable2['ManYml60'].count()
+
+
+
+
