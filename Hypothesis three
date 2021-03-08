@@ -93,4 +93,10 @@ fema30= pd.DataFrame(list_of_tuples, columns = ['Company', 'Female customers you
 f=gender.drop(columns='Number of male customers')
 femal30 = pd.merge(f, fema30,  how='left', on=['Company'])
 
+#female customers of the pink company, older than 60
+newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Pink Cab') & (newtable2['Age'] > 60 ), 'FeP60'] = 'True'
+newtable2['FeP60'].count()
 
+#female customers of the yellow company, older than 60
+newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Yellow Cab') & (newtable2['Age'] > 60 ), 'FeY60'] = 'True'
+newtable2['FeY60'].count()
