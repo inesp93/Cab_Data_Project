@@ -76,6 +76,21 @@ malefinal.to_csv('MaleCustomers.csv', index = False, header=True)
 
 #the same procedure with the female users
 
+#female customers of the pink company, younger than 30
+newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Pink Cab') & (newtable2['Age'] < 30 ), 'FeP30'] = 'True'
+newtable2['FeP30'].count()
 
+#female customers of the yellow company, younger than 30
+newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Yellow Cab') & (newtable2['Age'] < 30 ), 'FeY30'] = 'True'
+newtable2['FeY30'].count()
+
+#making a DataFrame with a new data
+fem30 = [newtable2['FeP30'].count(), newtable2['FeY30'].count()]
+list_of_tuples = list(zip(Name, fem30))
+fema30= pd.DataFrame(list_of_tuples, columns = ['Company', 'Female customers younger than 30'])
+
+#merging a new DataFrame with the previos Gender table
+f=gender.drop(columns='Number of male customers')
+femal30 = pd.merge(f, fema30,  how='left', on=['Company'])
 
 
