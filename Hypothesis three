@@ -1,3 +1,23 @@
 #extension of the DataGlacierWeek2_Final_cab_data.ipynb file and Hypothesis two
 
-#Hypothesis three: Yellow Cab Company has a higher user ratio in the cities
+#Hypothesis three: Yellow Cab Company has a higher number of both male and female users
+
+newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Pink Cab'), 'ManP'] = 'True'
+newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Yellow Cab'), 'ManY'] = 'True'
+newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Pink Cab'), 'WomanP'] = 'True'
+newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Yellow Cab'), 'WomanY'] = 'True'
+
+woman = [newtable2['WomanP'].count(), newtable2['WomanY'].count()]
+list_of_tuples = list(zip(Name, woman))
+gend= pd.DataFrame(list_of_tuples, columns = ['Company', 'Number of female customers'])
+print(gend)
+
+mane = [newtable2['ManP'].count(), newtable2['ManY'].count()]
+list_of_tuples = list(zip(Name, mane))
+gende= pd.DataFrame(list_of_tuples, columns = ['Company', 'Number of male customers'])
+print(gende)
+
+gender = pd.merge(gend, gende,  how='left', on=['Company'])
+print(gender)
+
+gender.to_csv('hypothesisthree.csv', index = False, header=True)
