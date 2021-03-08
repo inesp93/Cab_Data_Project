@@ -1,6 +1,6 @@
 #extension of the DataGlacierWeek2_Final_cab_data.ipynb file
 
-#Hypothesis two:
+#Hypothesis two: Checking which company has a majority of Profit Per Capita in a different city
 
 profitincity=newtable2.groupby(['Company','City']).Profit.agg(lambda x: x.sum()) #profit in cities
 profitincity.to_frame()
@@ -23,3 +23,10 @@ pinkcities['Profit per Capita Pink']= pinkcities['Profit']/pinkcities['Populatio
 yellowcities['Population'] = yellowcities['Population'].apply(clean_number).astype('float')
 yellowcities['Profit per Capita Yellow']= yellowcities['Profit']/yellowcities['Population']
 
+hypothesistw = pinkcities.drop(['Profit','Population','Users'], axis=1) #removing unnecessary data
+hypothesistwo = hypothesistw.join(yellowcities['Profit per Capita Yellow'], how='left')
+
+#checking which company has a majority of Profit Per Capita in a different city
+hypothesistwo['Majority'] = np.where(hypothesistwo['Profit per Capita Pink']>hypothesistwo['Profit per Capita Yellow'],'Pink Cab Company','Yellow Cab Company')
+
+hypothesistwo.to_csv('hypothesistwo.csv', index = False, header=True) #saving a .csv file
