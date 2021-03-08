@@ -1,6 +1,7 @@
 #extension of the DataGlacierWeek2_Final_cab_data.ipynb file and Hypothesis two
 
-#Hypothesis three: Yellow Cab Company has a higher number of both, male and female users
+#Hypothesis three: Yellow Cab Company has a higher number of both, male and female users than the Pink Cab Company,
+#and the highest number of users are the male customers aged (30-60) of the Yellow Cab Company
 
 newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Pink Cab'), 'ManP'] = 'True'
 newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Yellow Cab'), 'ManY'] = 'True'
