@@ -1,0 +1,12 @@
+#extension of the DataGlacierWeek2_Final_cab_data.ipynb file
+
+#Hypothesis two:
+
+profitincity=newtable2.groupby(['Company','City']).Profit.agg(lambda x: x.sum()) #profit in cities
+profitincity.to_frame()
+
+pink=profitincity.drop(index='Yellow Cab')  #splitting the table and making two new dataframes
+yellow=profitincity.drop(index='Pink Cab')
+
+pinkcities=pd.merge(pink, City, how='left', on=['City']) #merging it with City.csv
+yellowcities=pd.merge(yellow, City, how='left', on=['City'])
