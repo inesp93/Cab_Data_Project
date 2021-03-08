@@ -20,7 +20,7 @@ print(gende)
 gender = pd.merge(gend, gende,  how='left', on=['Company'])
 print(gender)
 
-gender.to_csv('hypothesisthree.csv', index = False, header=True)
+gender.to_csv('numbercustomers.csv', index = False, header=True)
 
 #checking general data about customers
 
