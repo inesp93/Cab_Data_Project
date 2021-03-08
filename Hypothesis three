@@ -49,6 +49,33 @@ newtable2['ManPml60'].count()
 newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Yellow Cab') & (newtable2['Age'] > 60 ), 'ManYml60'] = 'True'
 newtable2['ManYml60'].count()
 
+#male customers of the pink company, between 30-60
+ManPbetween= newtable2['Man'].count() - newtable2['ManPml30'].count() - newtable2['ManPml60'].count()
+
+#male customers of the yellow company, between 30-60
+ManPbetweenY= newtable2['ManYe'].count() - newtable2['ManYml30'].count() - newtable2['ManYml60'].count()
+
+#making a DataFrame with a new data
+manbetween = [ManPbetween, ManPbetweenY]
+list_of_tuples = list(zip(Name, manbetween))
+manbetween3060= pd.DataFrame(list_of_tuples, columns = ['Company', 'Male customers 30-60'])
+
+#merging a new DataFrame with the previos table
+male3060 = pd.merge(male30, manbetween3060, how='left', on=['Company'])
+
+#making a DataFrame with a new data
+man60 = [newtable2['ManPml60'].count(), newtable2['ManYml60'].count()]
+list_of_tuples = list(zip(Name, man60))
+mann60= pd.DataFrame(list_of_tuples, columns = ['Company', 'Male customers older than 60'])
+
+#merging a new DataFrame with the previos table
+malefinal = pd.merge(male3060, mann60, how='left', on=['Company'])
+
+#saving a final table
+malefinal.to_csv('MaleCustomers.csv', index = False, header=True)
+
+#the same procedure with the female users
+
 
 
 
