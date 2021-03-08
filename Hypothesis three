@@ -37,7 +37,7 @@ man30 = [newtable2['ManPml30'].count(), newtable2['ManYml30'].count()]
 list_of_tuples = list(zip(Name, man30))
 mal30= pd.DataFrame(list_of_tuples, columns = ['Company', 'Male customers younger than 30'])
 
-#merging a new DataFrame with the previos Gender table
+#merging a new DataFrame with the previous Gender table
 m=gender.drop(columns='Number of female customers')
 male30 = pd.merge(m, mal30,  how='left', on=['Company'])
 
@@ -60,7 +60,7 @@ manbetween = [ManPbetween, ManPbetweenY]
 list_of_tuples = list(zip(Name, manbetween))
 manbetween3060= pd.DataFrame(list_of_tuples, columns = ['Company', 'Male customers 30-60'])
 
-#merging a new DataFrame with the previos table
+#merging a new DataFrame with the previous table
 male3060 = pd.merge(male30, manbetween3060, how='left', on=['Company'])
 
 #making a DataFrame with a new data
@@ -68,7 +68,7 @@ man60 = [newtable2['ManPml60'].count(), newtable2['ManYml60'].count()]
 list_of_tuples = list(zip(Name, man60))
 mann60= pd.DataFrame(list_of_tuples, columns = ['Company', 'Male customers older than 60'])
 
-#merging a new DataFrame with the previos table
+#merging a new DataFrame with the previous table
 malefinal = pd.merge(male3060, mann60, how='left', on=['Company'])
 
 #saving a final table
@@ -89,7 +89,7 @@ fem30 = [newtable2['FeP30'].count(), newtable2['FeY30'].count()]
 list_of_tuples = list(zip(Name, fem30))
 fema30= pd.DataFrame(list_of_tuples, columns = ['Company', 'Female customers younger than 30'])
 
-#merging a new DataFrame with the previos Gender table
+#merging a new DataFrame with the previous Gender table
 f=gender.drop(columns='Number of male customers')
 femal30 = pd.merge(f, fema30,  how='left', on=['Company'])
 
@@ -104,3 +104,22 @@ newtable2['FeY60'].count()
 #users between 30-60
 FePbetween= newtable2['WomanP'].count() - newtable2['FeP30'].count() - newtable2['FeP60'].count()
 FeYbetween= newtable2['WomanY'].count() - newtable2['FeY30'].count() - newtable2['FeY60'].count()
+
+#making a DataFrame with a new data
+febetween = [FePbetween, FeYbetween]
+list_of_tuples = list(zip(Name, febetween))
+febetween3060= pd.DataFrame(list_of_tuples, columns = ['Company', 'Female customers 30-60'])
+
+#merging a new DataFrame with the previous table
+female3060 = pd.merge(femal30, febetween3060, how='left', on=['Company'])
+
+#making a DataFrame with a new data
+fe60 = [newtable2['FeP60'].count(), newtable2['FeY60'].count()]
+list_of_tuples = list(zip(Name, fe60))
+femm60= pd.DataFrame(list_of_tuples, columns = ['Company', 'Female customers older than 60'])
+
+#merging a new DataFrame with the previous table
+femalefinal = pd.merge(female3060, femm60, how='left', on=['Company'])
+
+#saving a final table
+femalefinal.to_csv('FemaleCustomers.csv', index = False, header=True)
