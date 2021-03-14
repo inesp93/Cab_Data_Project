@@ -8,6 +8,8 @@ newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Yellow
 newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Pink Cab'), 'WomanP'] = 'True'
 newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Yellow Cab'), 'WomanY'] = 'True'
 
+Name = ['PinkCab', 'YellowCab'] 
+
 woman = [newtable2['WomanP'].count(), newtable2['WomanY'].count()]
 list_of_tuples = list(zip(Name, woman))
 gend= pd.DataFrame(list_of_tuples, columns = ['Company', 'Number of female customers'])
