@@ -1,0 +1,25 @@
+#extension of the DataGlacierWeek2_Final_cab_data.ipynb file and Hypothesis three
+
+#Hypothesis four: Card Payment is the most used
+
+newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Pink Cab') & (newtable2['Payment_Mode'] =='Card' ), 'ManPCard'] = 'True'
+newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Yellow Cab') & (newtable2['Payment_Mode'] =='Card' ), 'ManYCard'] = 'True'
+manCard = [newtable2['ManPCard'].count(), newtable2['ManYCard'].count()]
+
+newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Pink Cab') & (newtable2['Payment_Mode'] =='Cash' ), 'ManPCash'] = 'True'
+newtable2.loc[(newtable2['Gender'] == 'Male') & (newtable2['Company'] == 'Yellow Cab') & (newtable2['Payment_Mode'] =='Cash'), 'ManYCash'] = 'True'
+manCash = [newtable2['ManPCash'].count(), newtable2['ManYCash'].count()]
+
+newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Pink Cab') & (newtable2['Payment_Mode'] =='Card' ), 'FePCard'] = 'True'
+newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Yellow Cab') & (newtable2['Payment_Mode'] =='Card'), 'FeFCard'] = 'True'
+FeCard = [newtable2['FePCard'].count(), newtable2['FeFCard'].count()]
+
+newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Pink Cab') & (newtable2['Payment_Mode'] =='Cash' ), 'FePCash'] = 'True'
+newtable2.loc[(newtable2['Gender'] == 'Female') & (newtable2['Company'] == 'Yellow Cab') & (newtable2['Payment_Mode'] =='Cash'), 'FeFCash'] = 'True'
+FeCash = [newtable2['FePCash'].count(), newtable2['FeFCash'].count()]
+
+df3 = pd.DataFrame({'Company': Name,
+                   'Man-Card Payment': manCard,
+                   'Man-Cash Payment': manCash,
+                   'Female-Card Payment' : FeCard,
+                   'Female-Cash Payment':  FeCash})
