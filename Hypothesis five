@@ -1,0 +1,22 @@
+#extension of the DataGlacierWeek2_Final_cab_data.ipynb file and Hypothesis three
+
+#Hypothesis five: The customers are usually from the middle or high income class
+
+newtable2['Income_Category'] = pd.cut(newtable2['Income (USD/Month)'], bins = [0, 2500, 12000, 35000], 
+                               include_lowest=True, labels = ['Low Income', 'Middle Income', 'High Income'])
+                               
+                             
+newtable2.loc[(newtable2['Company'] == 'Pink Cab') & (newtable2['Income_Category']=='Low Income'), 'LowIncomeP'] = 'True'
+newtable2.loc[(newtable2['Company'] == 'Yellow Cab') & (newtable2['Income_Category']=='Low Income'), 'LowIncomeY'] = 'True'
+newtable2.loc[(newtable2['Company'] == 'Pink Cab') & (newtable2['Income_Category']=='Middle Income'), 'MiddleIncomeP'] = 'True'
+newtable2.loc[(newtable2['Company'] == 'Yellow Cab') & (newtable2['Income_Category']=='Middle Income'), 'MiddleIncomeY'] = 'True'
+newtable2.loc[(newtable2['Company'] == 'Pink Cab') & (newtable2['Income_Category']=='High Income'), 'HighIncomeP'] = 'True'
+newtable2.loc[(newtable2['Company'] == 'Yellow Cab') & (newtable2['Income_Category']=='High Income'), 'HighIncomeY'] = 'True'
+
+low=[newtable2['LowIncomeP'].count(), newtable2['LowIncomeY'].count()]
+middle=[newtable2['MiddleIncomeP'].count(), newtable2['MiddleIncomeY'].count()]
+high=[newtable2['HighIncomeP'].count(), newtable2['HighIncomeY'].count()]
+df4 = pd.DataFrame({'Company': Name,
+                   'Low Income': low,
+                   'Middle Income': middle,
+                   'High Income' : high})
